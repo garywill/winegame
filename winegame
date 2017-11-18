@@ -1,0 +1,16 @@
+#!/bin/bash
+if type primusrun >/dev/null 2>&1; then
+    VC="vblank_mode=0 primusrun"
+    echo Using second video card: $VC !
+elif type optirun >/dev/null 2>&1; then
+    VC="optirun"
+    echo Using second video card: $VC !
+else
+    echo not using second video card !
+fi
+
+cmd_to_exec="env $VC wine explorer /desktop=winegame $*"
+
+echo $cmd_to_exec
+
+$cmd_to_exec
